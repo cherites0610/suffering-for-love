@@ -12,7 +12,10 @@ export default {
       base: ['14px', '20px'], //內文
       lg: ['16px', '22px'], //區塊標題
       xl: ['24px', '32px'], //頁面標題
-    }
+    },
+    colors:{
+      color600:"#468D9B",
+    },
   },
   plugins: [
 

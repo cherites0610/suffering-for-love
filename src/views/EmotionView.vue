@@ -10,12 +10,12 @@
                 </span>
             </div>
 
-            <div class="card flex flex-col h-64 w-80 rounded-lg shadow-xl p-5 gap-2 overflow-hidden">
-                <div v-for="item in emotions" class="flex gap-3">
+            <div class="card flex flex-col h-64 w-80 rounded-lg shadow-md p-5 gap-2 overflow-hidden">
+                <div v-for="item in emotions" class="flex gap-3 my-1">
                     <span>
-                        <PhHeartBreak :size="28" :color='color[item.category]' />
+                        <PhHeartBreak :size="23" :color='color[item.category]' />
                     </span>
-                    <span :style="{ color: color[item.category] }">{{ item.title }}</span>
+                    <span  :style="{ color: color[item.category] }">{{ item.title }}</span>
                 </div>
             </div>
         </div>
@@ -23,16 +23,16 @@
         <div>
             <div class="header flex flex-row justify-between">
                 <span class="font-semibold text-lg flex">
-                    <PhUserCircle :size="32" color="#2d2020" />
-                    <div class=" mx-2 py-2">
+                    <PhUserCircle :size="28" color="#2d2020" />
+                    <div class=" mx-2 py-1">
                         情緒獨享
                     </div>
                 </span>
             </div>
-            <div class="card flex flex-col max-h-64 w-80 rounded-lg shadow-xl p-5 gap-2 overflow-hidden">
-                <div v-for="item in emotions" class="flex gap-3">
+            <div class="card flex flex-col max-h-64 w-80 rounded-lg shadow-md p-5 gap-2 overflow-hidden">
+                <div v-for="item in emotions" class="flex gap-3 my-1">
                     <span>
-                        <PhHeartBreak :size="32" :color='color[item.category]' />
+                        <PhHeartBreak :size="23" :color='color[item.category]' />
                     </span>
                     <span :style="{ color: color[item.category] }">{{ item.title }}</span>
                 </div>
@@ -40,9 +40,9 @@
         </div>
     </div>
 
-    <div class="absolute bottom-3 right-2 rounded-full p-2" style="background-color: #5AB4C5;"
+    <div class="absolute bottom-3 right-5 rounded-full p-2 shadow-md" style="background-color: #5AB4C5;"
         @click="modalActive = (!modalActive)">
-        <PhPlus :size="32" color="#2d2020" />
+        <PhPlus :size="40" color=white  />
     </div>
 
     <!-- The Modal -->
@@ -72,7 +72,7 @@
 
                     <div class="flex flex-col">
                         <span class="text-lg">留言:</span>
-                        <textarea class="h-24 my-2 border-solid border-2"></textarea>
+                        <textarea  class="h-24 my-2 border-solid border-2 focus:border-color600 focus:outline-none" ></textarea>
                     </div>
 
                     <div class="flex flex-col my-3">
@@ -148,10 +148,7 @@ emotions.push(new Emotion(1, "加薪好開心", 0, "2024/09/07"))
 emotions.push(new Emotion(1, "jerry買晚餐不幫我帶好生氣", 1, "2024/09/07"))
 emotions.push(new Emotion(1, "忘記帶充電線哭哭", 2, "2024/09/07"))
 emotions.push(new Emotion(1, "思考晚餐吃甚麼好平靜", 3, "2024/09/07"))
-emotions.push(new Emotion(1, "加薪好開心", 0, "2024/09/07"))
-emotions.push(new Emotion(1, "加薪好開心", 0, "2024/09/07"))
-emotions.push(new Emotion(1, "加薪好開心", 0, "2024/09/07"))
-emotions.push(new Emotion(1, "加薪好開心", 0, "2024/09/07"))
+
 </script>
 
 <style scoped>
