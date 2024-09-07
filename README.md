@@ -1,33 +1,8 @@
 # suffering-for-love
 
-This template should help get you started developing with Vue 3 in Vite.
+## goal
 
-## Recommended IDE Setup
+學生時期時常碰到升學壓力、有了家庭後而有的金錢壓力、或是想更認識自己等。總總因素壓制著生活，急切需要一個地方重新呼吸調整，我們的微服務以簡潔且方便的介面提供您預約心理諮商。心情留言讓你記下自己的心情，並自由分享給平台上的人
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
+# During school years, students often face academic pressure, and after starting a family, financial pressure can arise or from the desire to better understand oneself. These factors weigh heavily on life, making it difficult to breathe and adjust. Our project offers a simple and convenient interface to help you schedule psychological counseling appointments. The "mood notes" feature allows you to record your feelings and freely share them with others.
 ## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
