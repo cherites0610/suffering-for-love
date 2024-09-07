@@ -1,7 +1,6 @@
 import requests
 from flask import Flask
 import numpy as np 
-import requests
 import re
 from bs4 import BeautifulSoup
 import json

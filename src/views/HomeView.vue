@@ -4,7 +4,7 @@ import
     <div class="flex flex-col content-center flex-wrap mt-4 gap-4">
         <div>
             <div class="header flex flex-row justify-between">
-                <span class="font-semibold text-lg ">誰可以做諮商?</span>
+                <span class="font-semibold text-lg ">諮商必要性</span>
                 <span class="text-lg" @click="goToUrl('/About')">更多 ></span>
             </div>
             <div class="card flex flex-row h-48 w-80 rounded-lg shadow-md overflow-hidden my-1">
@@ -12,7 +12,7 @@ import
                     <img src="../../image/347620.jpg"
                     class=" ">
                 </div>
-                <span class="text-base basis-2/3 ps-3 pe-3 py-1 leading-6" @click="goToUrl('/About')">每個人面臨挑戰時，都有自己不同的步調，當步調跟不上期望的速度時，在生活中遇到的挫折感就會很大。這時候該怎麼穩定步調?該怎麼在困惑的生活中挪出一小片讓自己好好靜靜的空間?</span>
+                <span class="text-base basis-2/3 ps-3 pe-3 py-3 leading-6" @click="goToUrl('/About')">每個人面臨挑戰時，都有自己不同的步調，當步調跟不上期望的速度時，在生活中遇到的挫折感就會很大。這時候該怎麼穩定步調?該怎麼在困惑的生活中挪出一小片讓自己好好靜靜的空間?</span>
             </div>
         </div>
 
@@ -63,7 +63,7 @@ const news = ref<News[]>([]);
 
 
 const getAllInf = async () => {
-    const res = await requests.get('http://172.20.10.2:5000/getAll');
+    const res = await requests.get('http://192.168.230.130:5000/getAll');
     for (let i = 0; i < res.data.length; i++) {
         const tempNew = res.data[i]
         news.value.push(new News(tempNew['_id'],tempNew['title'],tempNew['url'],tempNew['date']))
