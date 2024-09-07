@@ -2,36 +2,52 @@
     <div>
         <div class="header flex flex-row gap-5">
             <span>台北市</span>
-            <select class="border">
-                <option v-for="item in 10" :value="item">{{ item }}</option>
+            <select v-model="selectPlace" class="border">
+                <option v-for="item in place" :value="item">{{ item }}</option>
             </select>
             <div class=" bg-cyan-200 rounded-full p-1">
-                <PhMagnifyingGlass :size="32" color="#e8e3e3" />
+                <PhMagnifyingGlass @click="getAllInf(selectPlace)" :size="32" color="#e8e3e3" />
             </div>
         </div>
-        <br/>
+        <br />
         <div>
-            <div class="flex flex-row mx-2">
-                <PhCircle :size="12" color="#5ab4c5" weight="fill"  class=" my-1"/>
+            <div v-for="item of clinics" class="flex flex-row mx-2">
+                <PhCircle :size="12" color="#5ab4c5" weight="fill" class=" my-1" />
                 <div class="grid grid-rows-4">
-                    <span>羽毛心靈雞湯診所</span>
-                    <span>大同路297號1樓</span>
+                    <span>{{ item.name }}</span>
+                    <span>{{ item.address }}</span>
                 </div>
-                
-                <PhGreaterThan :size="32" color="#000000" class="ml-auto"/>
+
+                <PhGreaterThan :size="32" color="#000000" class="ml-auto" />
             </div>
-            
+
 
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import request from "../axios/index"
+import { ref } from 'vue';
+import requests from '../axios/index'
+import Clinic from '@/modal/clinic';
+const selectPlace = ref<string>('北投區');
+const place: string[] = ['北投區', '士林區', '中山區', '內湖區', '大同區', '松山區', '萬華區', '中正區', '大安區', '信義區', '南港區', '文山區']
+const clinics = ref<Clinic[]>([]);
+
+const getAllInf = async (place: string) => {
+    const req = await requests.get('http://127.0.0.1:5000/getAllIPInf')
+    const temp = req.data.result.results.filter((item) => new String(item['address']).includes(place))
+    clinics.value = []
+    console.log(temp);
+    
+    for (const item of temp) {
+        clinics.value.push(
+            new Clinic(item._id,item.address,item.name,item.phone)
+        )
+    }
 
 
-
-request.get('https://data.taipei/api/v1/dataset/9267a378-744e-4a46-ac6c-aacc277402b4?scope=resourceAquire');
+}
 </script>
 
 <style scoped></style>
