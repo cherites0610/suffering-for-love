@@ -48,3 +48,19 @@ def getAllPInf():
     modified_text = re.sub(r'電話', 'phone', modified_text)
 
     return modified_text
+
+@app.route("/getAllOLInf")
+def getAllOLInf():
+    header = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
+    params= { 'limit':'200' }
+    url = 'https://data.taipei/api/v1/dataset/1ad65a1e-3e4b-4749-8d02-9a9bdc120e95?scope=resourceAquire'
+    web = requests.get(url, headers=header, params=params)  # 取得網頁內容
+    
+    # 使用正則表達式替換 '地址' 為 'address'
+    modified_text = re.sub(r'地址', 'address', web.text)
+    modified_text = re.sub(r'機構名稱', 'name', modified_text)
+    modified_text = re.sub(r'電話', 'phone', modified_text)
+
+    return modified_text
