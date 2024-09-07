@@ -89,7 +89,7 @@
                         </div>
 
                     </div>
-                    <button class=" h-10 w-24 rounded-md" style="background: #5AB4C5;">提交</button>
+                    <button class=" h-10 w-24 rounded-md" style="background: #5AB4C5; color: #ffffff !important;">提交</button>
                 </div>
 
 

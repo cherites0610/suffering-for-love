@@ -1,12 +1,22 @@
 <template>
-    <div>
-        {{ clinic?.name }}
-        {{ clinic?.phone }}
+    <div class="mx-5 my-5">
+        <div>
+            <span class="text-lg">診所名稱 : </span>
+            <span>{{ clinic?.name }}</span>
+        </div>
+        <div class="my-2">
+            <span class="text-lg">連絡電話 : </span>
+            <span>{{ clinic?.phone }}</span>
+        </div>
+            
     </div>
-    <div>
-        <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
-        <input type="time" id="appt" name="appt" min="09:00" max="18:00" step="30" required />
+    <span class="m-5">時段選擇 :</span>
+    <div class=" mx-5 my-1">
+        
+        <input class="focus:border-color600 focus:outline-none" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+        <input class="mx-2 focus:border-color600 focus:outline-none" type="time" id="appt" name="appt" min="09:00" max="18:00" step="30" required />
     </div>
+    <button class=" h-10 w-24 rounded-md" style="background: #5AB4C5;color: #ffffff !important;">預約</button>
 </template>
 
 <script setup lang="ts">
