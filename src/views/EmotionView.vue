@@ -4,9 +4,9 @@
             <div class="header flex flex-row justify-between">
                 <span class="font-semibold text-lg flex">
                     <PhPersonArmsSpread :size="28" />
-                     <div class=" mx-2 py-1">
+                    <div class=" mx-2 py-1">
                         情緒共享
-                     </div>
+                    </div>
                 </span>
             </div>
 
@@ -26,7 +26,7 @@
                     <PhUserCircle :size="32" color="#2d2020" />
                     <div class=" mx-2 py-2">
                         情緒獨享
-                     </div>
+                    </div>
                 </span>
             </div>
             <div class="card flex flex-col max-h-64 w-80 rounded-lg shadow-xl p-5 gap-2 overflow-hidden">
@@ -46,49 +46,60 @@
     </div>
 
     <!-- The Modal -->
-    <div class="modal fixed z-10 left-0 top-0 h-full w-full overflow-auto shadow-xl bg-black bg-opacity-40" v-if="modalActive">
-        <div class=" w-full h-full content-center flex-wrap flex justify-center">
-            <div class="bg-white p-4 opacity-100 w-80 z-20 rounded-lg">
-                <div class="flex space-x-4 text-xl justify-center">
-                    <div class=" flex-ju">
-                       增加心情 
+    <Transition>
+        <div class="modal fixed z-10 left-0 top-0 h-full w-full overflow-auto shadow-xl bg-black bg-opacity-40"
+            v-if="modalActive">
+            <div class=" w-full h-full content-center flex-wrap flex justify-center">
+                <div class="bg-white p-4 opacity-100 w-80 z-20 rounded-lg">
+                    <div class="flex space-x-4 text-xl justify-center">
+                        <div class=" flex-ju">
+                            增加心情
+                        </div>
+
+                        <PhX @click="modalActive = (!modalActive)" :size="32" color="#2d2020"
+                            class="absolute right-12" />
                     </div>
-                    
-                    <PhX @click="modalActive = (!modalActive)" :size="32" color="#2d2020" class="absolute right-12"/>
-                </div>
-                <div class=" my-1">
-                    <span class="text-lg ">今日心情:</span>
-                    <div class="  gap-3 justify-between p-6 w-full flex">
-                        <img @click="emotionSelect = 1" class="h-9" :src="getImgUrl(1)" > 
-                        <img @click="emotionSelect = 2" class="h-9" :src="getImgUrl(2)">
-                        <img @click="emotionSelect = 3" class="h-9" :src="getImgUrl(3)">
-                        <img @click="emotionSelect = 4" class="h-9" :src="getImgUrl(4)">
+                    <div class=" my-1">
+                        <span class="text-lg ">今日心情:</span>
+                        <div class="  gap-3 justify-between p-6 w-full flex">
+                            <img @click="emotionSelect = 1" class="h-9" :src="getImgUrl(1)">
+                            <img @click="emotionSelect = 2" class="h-9" :src="getImgUrl(2)">
+                            <img @click="emotionSelect = 3" class="h-9" :src="getImgUrl(3)">
+                            <img @click="emotionSelect = 4" class="h-9" :src="getImgUrl(4)">
+                        </div>
+
                     </div>
 
+                    <div class="flex flex-col">
+                        <span class="text-lg">留言:</span>
+                        <textarea class="h-24 my-2 border-solid border-2"></textarea>
+                    </div>
+
+                    <div class="flex flex-col my-3">
+                        <span class="text-lg">狀態:</span>
+                        <div class="flex">
+                            <div class="">
+                                <input type="radio" id="huey" name="drone" value="public" checked />
+                                <label for="huey">公開</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="huey" name="drone" value="private" checked />
+                                <label for="huey">不公開</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class=" h-10 w-24 rounded-md" style="background: #5AB4C5;">提交</button>
                 </div>
 
-                <div class="flex flex-col">
-                    <span class="text-lg">留言:</span>
-                    <input class="h-24 my-2 border-solid border-2 " type="textarea">
-                </div>
 
-                <div class="flex flex-col">
-                    <span class="text-lg">狀態:</span>
-                    <a-radio-group>
-                        <a-radio>11</a-radio>
-                        <a-radio>222</a-radio>
-                    </a-radio-group>
-
-                </div>
-                <button class="" style="background: #5AB4C5;">提交</button>
             </div>
+            <!-- Modal content -->
 
 
         </div>
-        <!-- Modal content -->
+    </Transition>
 
-
-    </div>
 </template>
 
 <script setup lang="ts">
@@ -143,4 +154,15 @@ emotions.push(new Emotion(1, "加薪好開心", 0, "2024/09/07"))
 emotions.push(new Emotion(1, "加薪好開心", 0, "2024/09/07"))
 </script>
 
-<style scoped></style>
+<style scoped>
+/* 下面我们会解释这些 class 是做什么的 */
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+</style>
