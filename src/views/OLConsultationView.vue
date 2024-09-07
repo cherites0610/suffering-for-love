@@ -15,7 +15,7 @@
                 <PhCircle :size="12" color="#5ab4c5" weight="fill" class=" my-1" />
                 <div class="grid grid-rows-4">
                     <span>{{ item.name }}</span>
-                    <span>{{ item.address }}</span>
+                    <span>{{ item.phone }}</span>
                 </div>
 
                 <PhGreaterThan :size="32" color="#000000" class="ml-auto" />
@@ -28,6 +28,7 @@
 import Clinic from '@/modal/clinic';
 import requests from '../axios/index'
 import { ref } from 'vue';
+import router from '@/router';
 const clinics = ref<Clinic[]>([]);
 
 const getAllInf = async () => {
@@ -39,6 +40,10 @@ const getAllInf = async () => {
             new Clinic(item._id, item.address, item.name, item.phone)
         )
     }
+}
+
+const clickClinics = (_id:number) => {
+    router.push("/OLF/"+_id)
 }
 </script>
 

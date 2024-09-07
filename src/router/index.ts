@@ -7,6 +7,7 @@ import OLConsultationView from '@/views/OLConsultationView.vue'
 import QAView from '@/views/QAView.vue'
 import AboutView from '@/views/AboutView.vue'
 import IPFormView from '@/views/IPFormView.vue'
+import OLFormView from '@/views/OLFormView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -65,6 +66,15 @@ const router = createRouter({
       component: IPFormView,
       meta: {
         title: '實體預約' //添加這部分
+      },
+      props: true
+    },
+    {
+      path: '/OLF/:id',
+      name: 'OLF',
+      component: OLFormView,
+      meta: {
+        title: '線上預約' //添加這部分
       },
       props: true
     }
