@@ -12,13 +12,13 @@ import
                     <img src="../../image/347620.jpg"
                     class=" ">
                 </div>
-                <span class="text-base basis-2/3 ps-3 pe-3 py-1 leading-6" @click="goToUrl('/About')">每個人面臨挑戰時，都有自己不同的步調，有些人適應良好，有些人無法適應，步調跟不上期望的速度時，在生活中遇到的挫折感就會很大。這時候該怎麼穩定步調?該怎麼在困惑的生活中挪出一小片讓自己好好靜靜的空間?</span>
+                <span class="text-base basis-2/3 ps-3 pe-3 py-1 leading-6" @click="goToUrl('/About')">每個人面臨挑戰時，都有自己不同的步調，當步調跟不上期望的速度時，在生活中遇到的挫折感就會很大。這時候該怎麼穩定步調?該怎麼在困惑的生活中挪出一小片讓自己好好靜靜的空間?</span>
             </div>
         </div>
 
         <div>
             <div class=" font-semibold text-lg">服務列表</div>
-            <div class="card flex flex-row h-24 w-80 rounded-lg shadow-xl my-1">
+            <div class="card flex flex-row h-24 w-80 rounded-lg shadow-md my-1">
                 <div class="basis-1/4 flex justify-center items-center flex-col" @click="goToUrl('/IPConsultation')">
                     <PhNotePencil color="#468D9B" :size="32" />
                     <span class=" text-base py-1">實體看診</span>
@@ -43,7 +43,7 @@ import
                 <span class="font-semibold text-lg">更多消息</span>
             </div>
 
-            <div class="card flex flex-col h-52 w-80 rounded-lg shadow-xl overflow-auto p-5 my-1">
+            <div class="card flex flex-col h-52 w-80 rounded-lg shadow-md overflow-auto p-5 my-1">
                 <div class="flex justify-between mb-5" v-for="item in news" @click="goToUrl(item.url)">
                     <span class=" text-base">{{ item.title }}</span>
                     <span class=" text-base">{{ item.date }}</span>
