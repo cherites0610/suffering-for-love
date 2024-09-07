@@ -19,11 +19,11 @@
             <div class="card flex flex-row h-24 w-80 rounded-lg shadow-md my-1">
                 <div class="basis-1/4 flex justify-center items-center flex-col" @click="goToUrl('/IPConsultation')">
                     <PhNotePencil color="#468D9B" :size="32" />
-                    <span class=" text-base py-1">實體看診</span>
+                    <span class=" text-base py-1">實體諮商</span>
                 </div>
                 <div class="basis-1/4 flex justify-center items-center flex-col" @click="goToUrl('/OLConsultation')">
                     <PhPhoneTransfer color="#468D9B" :size="32" />
-                    <span class="text-base py-1">視訊看診</span>
+                    <span class="text-base py-1">視訊諮商</span>
                 </div>
                 <div class="basis-1/4 flex justify-center items-center flex-col" @click="goToUrl('/emotion')">
                     <PhHeartBreak color="#468D9B" :size="32" />

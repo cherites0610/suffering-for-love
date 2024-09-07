@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div class="header flex flex-row gap-5">
-            <span>台北市</span>
-            <select v-model="selectPlace" class="border">
+        <div class="header flex flex-row gap-5 m-5">
+            <span class="text-lg my-2">台北市</span>
+            <select v-model="selectPlace" class="border focus:border-color600 focus:outline-none" style="background-color: transparent; ">
                 <option v-for="item in place" :value="item">{{ item }}</option>
             </select>
             <div class=" bg-cyan-200 rounded-full p-1">
-                <PhMagnifyingGlass @click="getAllInf(selectPlace)" :size="32" color="#e8e3e3" />
+                <PhMagnifyingGlass @click="getAllInf(selectPlace)" :size="32" color="#5AB4C5" />
             </div>
         </div>
         <br />
