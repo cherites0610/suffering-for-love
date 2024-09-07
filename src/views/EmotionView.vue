@@ -3,14 +3,17 @@
         <div>
             <div class="header flex flex-row justify-between">
                 <span class="font-semibold text-lg flex">
-                    <PhPerson :size="32" color="#2d2020" />情緒共享
+                    <PhPersonArmsSpread :size="28" />
+                     <div class=" mx-2 py-1">
+                        情緒共享
+                     </div>
                 </span>
             </div>
 
             <div class="card flex flex-col h-64 w-80 rounded-lg shadow-xl p-5 gap-2 overflow-hidden">
                 <div v-for="item in emotions" class="flex gap-3">
                     <span>
-                        <PhHeartBreak :size="32" :color='color[item.category]' />
+                        <PhHeartBreak :size="28" :color='color[item.category]' />
                     </span>
                     <span :style="{ color: color[item.category] }">{{ item.title }}</span>
                 </div>
@@ -20,7 +23,10 @@
         <div>
             <div class="header flex flex-row justify-between">
                 <span class="font-semibold text-lg flex">
-                    <PhUserCircle :size="32" color="#2d2020" />情緒獨享
+                    <PhUserCircle :size="32" color="#2d2020" />
+                    <div class=" mx-2 py-2">
+                        情緒獨享
+                     </div>
                 </span>
             </div>
             <div class="card flex flex-col max-h-64 w-80 rounded-lg shadow-xl p-5 gap-2 overflow-hidden">
@@ -40,30 +46,38 @@
     </div>
 
     <!-- The Modal -->
-    <div class="modal fixed z-10 left-0 top-0 h-full w-full overflow-auto bg-black bg-opacity-40" v-if="modalActive">
+    <div class="modal fixed z-10 left-0 top-0 h-full w-full overflow-auto shadow-xl bg-black bg-opacity-40" v-if="modalActive">
         <div class=" w-full h-full content-center flex-wrap flex justify-center">
-            <div class="bg-white p-4 opacity-100 w-80 z-20">
-                <div class="flex justify-center text-xl">增加心情
-                    <PhX @click="modalActive = (!modalActive)" :size="32" color="#2d2020" />
+            <div class="bg-white p-4 opacity-100 w-80 z-20 rounded-lg">
+                <div class="flex space-x-4 text-xl justify-center">
+                    <div class=" flex-ju">
+                       增加心情 
+                    </div>
+                    
+                    <PhX @click="modalActive = (!modalActive)" :size="32" color="#2d2020" class="absolute right-12"/>
                 </div>
-                <div>
-                    <span class="text-lg">今日心情:</span>
-                    <div class="  gap-3 justify-between p-4 w-full flex">
-                        <img @click="emotionSelect = 1" class="h-14" :src="getImgUrl(1)">
-                        <img @click="emotionSelect = 2" class="h-14" :src="getImgUrl(2)">
-                        <img @click="emotionSelect = 3" class="h-14" :src="getImgUrl(3)">
-                        <img @click="emotionSelect = 4" class="h-14" :src="getImgUrl(4)">
+                <div class=" my-1">
+                    <span class="text-lg ">今日心情:</span>
+                    <div class="  gap-3 justify-between p-6 w-full flex">
+                        <img @click="emotionSelect = 1" class="h-9" :src="getImgUrl(1)" > 
+                        <img @click="emotionSelect = 2" class="h-9" :src="getImgUrl(2)">
+                        <img @click="emotionSelect = 3" class="h-9" :src="getImgUrl(3)">
+                        <img @click="emotionSelect = 4" class="h-9" :src="getImgUrl(4)">
                     </div>
 
                 </div>
 
                 <div class="flex flex-col">
                     <span class="text-lg">留言:</span>
-                    <input class="h-24 border-solid border-2" type="text">
+                    <input class="h-24 my-2 border-solid border-2 " type="textarea">
                 </div>
 
                 <div class="flex flex-col">
                     <span class="text-lg">狀態:</span>
+                    <a-radio-group>
+                        <a-radio>11</a-radio>
+                        <a-radio>222</a-radio>
+                    </a-radio-group>
 
                 </div>
                 <button class="" style="background: #5AB4C5;">提交</button>
