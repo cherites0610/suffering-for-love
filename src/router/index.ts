@@ -5,6 +5,7 @@ import EmotionView from '@/views/EmotionView.vue'
 import IPConsultationView from '@/views/IPConsultationView.vue'
 import OLConsultationView from '@/views/OLConsultationView.vue'
 import QAView from '@/views/QAView.vue'
+import AboutView from '@/views/AboutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,6 +48,14 @@ const router = createRouter({
       component: QAView,
       meta: {
         title: 'Q&A' //添加這部分
+      }
+    },
+    {
+      path: '/About',
+      name: 'About',
+      component: AboutView,
+      meta: {
+        title: '諮商介紹' //添加這部分
       }
     }
 
