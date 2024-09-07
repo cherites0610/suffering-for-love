@@ -1,16 +1,16 @@
 <template>
     <div class="flex flex-col mt-2">
-        <div :key="item._id" class="gap-5 p-4" @click="toggle(item._id)" v-for="item in QAs">
+        <div :key="item._id" class="gap-5 p-4 px-6 mt-3" @click="toggle(item._id)" v-for="item in QAs">
             <div class="flex justify-between">
-                <span class="text-lg font-semibold">Q: {{ item.question }}</span>
+                <span  class="text-lg font-semibold ">Q : {{ item.question }}</span>
                 <span>
-                    <PhPlus v-if="!getIsActive(item._id)" :size="32" color="#2d2020" />
-                    <PhMinus v-if="getIsActive(item._id)" :size="32" color="#2d2020" />
+                    <PhPlus  v-if="!getIsActive(item._id)" :size="25" color="#2d2020" />
+                    <PhMinus v-if="getIsActive(item._id)" :size="25" color="#2d2020" />
                 </span>
             </div>
             <Transition>
-                <div v-if="getIsActive(item._id)">
-                    <span>A: {{ item.answer }}</span>
+                <div class=" mt-5 px-3" v-if="getIsActive(item._id)">
+                    <span>A : {{ item.answer }}</span>
                 </div>
             </Transition>
 
@@ -27,6 +27,7 @@ const openItems = ref<number[]>([]);
 const toggle = (id: number) => {
     if (openItems.value.includes(id)) {
         openItems.value.splice(openItems.value.indexOf(id), 1)
+
     } else {
         openItems.value.push(id);
     }
