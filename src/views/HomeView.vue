@@ -9,7 +9,7 @@ import
             </div>
             <div class="card flex flex-row h-48 w-80 rounded-lg shadow-md overflow-hidden my-1">
                 <div class="bg-contain h-100 flex-4 rounded-l-lg bg-black basis-1/3">
-                    <img src="C:\Users\User\Desktop\suffering-for-love\image\347620.jpg"
+                    <img src="../../image/347620.jpg"
                     class=" ">
                 </div>
                 <span class="text-base basis-2/3 ps-3 pe-3 py-5 leading-6">文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述</span>
