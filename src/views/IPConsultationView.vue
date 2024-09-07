@@ -1,24 +1,31 @@
 <template>
     <div>
-        <div class="header flex flex-row gap-5 m-5">
+        <div class="header flex flex-row gap-5 mx-5 my-3">
+            <span class=" text-lg my-2">區域</span>
             <span class="text-lg my-2">台北市</span>
-            <select v-model="selectPlace" class="border focus:border-color600 focus:outline-none" style="background-color: transparent; ">
+            <select v-model="selectPlace" class="border focus:border-color600 focus:outline-none" style="background-color: transparent; border-radius: 8px;">
                 <option v-for="item in place" :value="item">{{ item }}</option>
             </select>
+
+            
+
             <div class=" bg-cyan-200 rounded-full p-1">
-                <PhMagnifyingGlass @click="getAllInf(selectPlace)" :size="32" color="#5AB4C5" />
+                <PhMagnifyingGlass @click="getAllInf(selectPlace)" :size="28" color="#5ab4c5" weight="duotone" />
             </div>
         </div>
+
+        <div style="height: 0.5px; background-color: #000; margin-top: 5px;"></div>
+
         <br />
         <div>
-            <div v-for="item of clinics" @click="clickClinics(item._id)" class="flex flex-row mx-2">
-                <PhCircle :size="12" color="#5ab4c5" weight="fill" class=" my-1" />
-                <div class="grid grid-rows-4">
+            <div v-for="item of clinics" @click="clickClinics(item._id)" class="flex flex-row mx-4">
+                <PhCircle :size="12" color="#5ab4c5" weight="fill" class=" my-2" />
+                <div class="grid grid-rows-4 mx-3">
                     <span>{{ item.name }}</span>
-                    <span>{{ item.address }}</span>
+                    <span style="color: #ADB8BE;">{{ item.address }}</span>
                 </div>
 
-                <PhGreaterThan :size="32" color="#000000" class="ml-auto" />
+                <PhGreaterThan :size="25" color="#000000" class="ml-auto my-2" />
             </div>
         </div>
     </div>
