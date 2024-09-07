@@ -47,10 +47,10 @@
 
     <!-- The Modal -->
     <Transition>
-        <div class="modal fixed z-10 left-0 top-0 h-full w-full overflow-auto shadow-xl bg-black bg-opacity-40"
+        <div class="modal fixed z-10 left-0 top-0 h-full w-full overflow-auto shadow-xl" style="background-color: rgba(0, 0, 0, 0.4);"
             v-if="modalActive">
-            <div class=" w-full h-full content-center flex-wrap flex justify-center">
-                <div class="bg-white p-4 opacity-100 w-80 z-20 rounded-lg">
+            <div class=" w-full h-full content-center flex-wrap flex justify-center" >
+                <div class="bg-white p-4 opacity-100 w-80 z-20 rounded-lg" style="background-color: white;opacity: 1 !important;">
                     <div class="flex space-x-4 text-xl justify-center">
                         <div class=" flex-ju">
                             增加心情
