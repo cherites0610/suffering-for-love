@@ -15,13 +15,6 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
-    proxy: {
-      // 將 API 請求代理到這裡
-      '/api': {
-        target: 'https://data.taipei',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, 'https://data.taipei'),  // 將 /api 開頭的路徑替換為空
-      },
-    },
+    
   }
 })

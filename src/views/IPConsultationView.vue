@@ -35,7 +35,7 @@ const place: string[] = ['北投區', '士林區', '中山區', '內湖區', '�
 const clinics = ref<Clinic[]>([]);
 
 const getAllInf = async (place: string) => {
-    const req = await requests.get('http://192.168.230.130:5000/getAllIPInf')
+    const req = await requests.get('http://192.168.88.180:5000/getAllIPInf')
     const temp = req.data.result.results.filter((item) => new String(item['address']).includes(place))
     clinics.value = []
     console.log(temp);

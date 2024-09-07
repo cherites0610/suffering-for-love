@@ -1,12 +1,9 @@
 import requests
 from flask import Flask
-import numpy as np 
 import re
 from bs4 import BeautifulSoup
 import json
 from flask_cors import CORS
-
-                                # 印出 title ( 台灣水庫即時水情 )
 
 app = Flask(__name__)
 CORS(app)

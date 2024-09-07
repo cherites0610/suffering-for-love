@@ -1,5 +1,3 @@
-import 
-
 <template>
     <div class="flex flex-col content-center flex-wrap mt-4 gap-4">
         <div>
@@ -63,7 +61,7 @@ const news = ref<News[]>([]);
 
 
 const getAllInf = async () => {
-    const res = await requests.get('http://192.168.230.130:5000/getAll');
+    const res = await requests.get('http://192.168.88.180:5000/getAll');
     for (let i = 0; i < res.data.length; i++) {
         const tempNew = res.data[i]
         news.value.push(new News(tempNew['_id'],tempNew['title'],tempNew['url'],tempNew['date']))
