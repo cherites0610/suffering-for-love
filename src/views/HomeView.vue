@@ -45,6 +45,7 @@
                 <div class="flex justify-between mb-5" v-for="item in news" @click="goToUrl(item.url)">
                     <span class=" text-base">{{ item.title }}</span>
                     <span class=" text-base">{{ item.date }}</span>
+                    
                 </div>
             </div>
         </div>
@@ -61,7 +62,7 @@ const news = ref<News[]>([]);
 
 
 const getAllInf = async () => {
-    const res = await requests.get('http://192.168.88.180:5000/getAll');
+    const res = await requests.get('http://192.168.88.182:5000/getAll');
     for (let i = 0; i < res.data.length; i++) {
         const tempNew = res.data[i]
         news.value.push(new News(tempNew['_id'],tempNew['title'],tempNew['url'],tempNew['date']))

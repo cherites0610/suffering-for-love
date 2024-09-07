@@ -3,11 +3,12 @@
         <div class="header flex flex-row gap-5 mx-5 my-3">
             <span class=" text-lg my-2">區域</span>
             <span class="text-lg my-2">台北市</span>
-            <select v-model="selectPlace" class="border focus:border-color600 focus:outline-none" style="background-color: transparent; border-radius: 8px;">
+            <select v-model="selectPlace" class="border focus:border-color600 focus:outline-none"
+                style="background-color: transparent; border-radius: 8px;">
                 <option v-for="item in place" :value="item">{{ item }}</option>
             </select>
 
-            
+
 
             <div class=" bg-cyan-200 rounded-full p-1">
                 <PhMagnifyingGlass @click="getAllInf(selectPlace)" :size="28" color="#5ab4c5" weight="duotone" />
@@ -40,20 +41,22 @@ const selectPlace = ref<string>('北投區');
 const place: string[] = ['北投區', '士林區', '中山區', '內湖區', '大同區', '松山區', '萬華區', '中正區', '大安區', '信義區', '南港區', '文山區']
 const clinics = ref<Clinic[]>([]);
 
-const clickClinics = (_id:number) => {
-    router.push("/IPF/"+_id)
+const clickClinics = (_id: number) => {
+    router.push("/IPF/" + _id)
 }
 
 const getAllInf = async (place: string) => {
-    const req = await requests.get('http://192.168.88.180:5000/getAllIPInf')
+    const req = await requests.get('http://192.168.88.182:5000/getAllIPInf')
     const temp = req.data.result.results.filter((item) => new String(item['address']).includes(place))
     clinics.value = []
-    console.log(temp);
 
     for (const item of temp) {
-        clinics.value.push(
-            new Clinic(item._id, item.address, item.name, item.phone)
-        )
+        if (!item.name.includes("治療所")) {
+            clinics.value.push(
+                new Clinic(item._id, item.address, item.name, item.phone)
+            )
+        }
+
     }
 
 

@@ -13,9 +13,9 @@
             <div class="card flex flex-col h-64 w-80 rounded-lg shadow-md p-5 gap-2 overflow-hidden">
                 <div v-for="item in emotions" class="flex gap-3 my-1">
                     <span>
-                        <PhHeartBreak :size="23" :color='color[item.category]' />
+                        <img class="h-6" :src="getImgUrl(item.category+1,5)">
                     </span>
-                    <span  :style="{ color: color[item.category] }">{{ item.title }}</span>
+                    <span :style="{ color: color[item.category] }">{{ item.title }}</span>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
             <div class="card flex flex-col max-h-64 w-80 rounded-lg shadow-md p-5 gap-2 overflow-hidden">
                 <div v-for="item in emotions" class="flex gap-3 my-1">
                     <span>
-                        <PhHeartBreak :size="23" :color='color[item.category]' />
+                        <img class="h-6" :src="getImgUrl(item.category+1,5)">
                     </span>
                     <span :style="{ color: color[item.category] }">{{ item.title }}</span>
                 </div>
@@ -62,34 +62,36 @@
                     <div class=" my-1">
                         <span class="text-lg ">今日心情:</span>
                         <div class="  gap-3 justify-between p-6 w-full flex">
-                            <img @click="emotionSelect = 1" class="h-9" :src="getImgUrl(1)">
-                            <img @click="emotionSelect = 2" class="h-9" :src="getImgUrl(2)">
-                            <img @click="emotionSelect = 3" class="h-9" :src="getImgUrl(3)">
-                            <img @click="emotionSelect = 4" class="h-9" :src="getImgUrl(4)">
+                            <img @click="emotionSelect = 1" class="h-9" :src="getImgUrl(1,emotionSelect)">
+                            <img @click="emotionSelect = 2" class="h-9" :src="getImgUrl(2,emotionSelect)">
+                            <img @click="emotionSelect = 3" class="h-9" :src="getImgUrl(3,emotionSelect)">
+                            <img @click="emotionSelect = 4" class="h-9" :src="getImgUrl(4,emotionSelect)">
                         </div>
 
                     </div>
 
                     <div class="flex flex-col">
                         <span class="text-lg">留言:</span>
-                        <textarea  class="h-24 my-2 border-solid border-2 focus:border-color600 focus:outline-none" ></textarea>
+                        <textarea v-model="say" class="h-24 my-2 border  focus:border-color600 focus:outline-none" style="border-radius:10px"></textarea>
                     </div>
 
                     <div class="flex flex-col my-3">
                         <span class="text-lg">狀態:</span>
-                        <div class="flex">
-                            <div class="">
-                                <input type="radio" id="huey" name="drone" value="public" checked />
-                                <label for="huey">公開</label>
+                        <div class="flex my-2">
+                            <div class="mx-3">
+                                <input v-model="isPublic" type="radio" id="huey" name="drone" value=true checked />
+                                <label for="huey" class="mx-2">公開</label>
                             </div>
                             <div>
-                                <input type="radio" id="huey" name="drone" value="private" checked />
-                                <label for="huey">不公開</label>
+                                <input v-model="isPublic" type="radio" id="huey" name="drone" value=false checked />
+                                <label for="huey" class="mx-2">不公開</label>
                             </div>
                         </div>
-
                     </div>
-                    <button class=" h-10 w-24 rounded-md" style="background: #5AB4C5; color: #ffffff !important;">提交</button>
+                    <div class="flex justify-center">
+                        <button @click="confirm()" class=" h-10 w-24 rounded-md" style="background: #5AB4C5; color: #ffffff !important;">提交</button>
+                    </div>
+                    
                 </div>
 
 
@@ -108,46 +110,59 @@ import Emotion from "../modal/emotion";
 
 const emotionSelect = ref<number>(0);
 const modalActive = ref<boolean>(false);
+const say = ref<string>("");
+const isPublic = ref<boolean>(false)
 
-const getImgUrl = (id: number): string => {
+const confirm = () => {
+    if(emotionSelect.value!=0 && say.value.length!=0){
+        modalActive.value=false;
+        say.value=""
+        emotionSelect.value=0;
+    }
+} 
+
+const getImgUrl = (id: number,emotionSelect:number): string => {
     if (id === 1) {
-        if (emotionSelect.value === id) {
+        if (emotionSelect === id) {
             return '../../image/nowHappy.png'
         } else {
             return '../../image/happy.png'
         }
 
     } else if (id === 2) {
-        if (emotionSelect.value === id) {
+        if (emotionSelect === id) {
             return '../../image/nowAngry.png'
         } else {
             return '../../image/angry.png'
         }
 
     } else if (id === 3) {
-        if (emotionSelect.value === id) {
-            return '../../image/nowQuite.png'
-        } else {
-            return '../../image/quite.png'
-        }
-
-    } else {
-        if (emotionSelect.value === id) {
+        if (emotionSelect === id) {
             return '../../image/nowQQ.png'
         } else {
             return '../../image/QQ.png'
         }
 
+    } else {
+        if (emotionSelect === id) {
+            return '../../image/nowQuite.png'
+            
+        } else {
+            return '../../image/quite.png'
+            
+        }
+
     }
 }
 
-const color: string[] = ['#76A732', '#D45251', '#F5BA4B', '169CCC']
+const color: string[] = ['#76A732', '#D45251', '#169CCC', '#F5BA4B']
 
 const emotions: Emotion[] = [];
-emotions.push(new Emotion(1, "加薪好開心", 0, "2024/09/07"))
+emotions.push(new Emotion(0, "加薪好開心", 0, "2024/09/07"))
 emotions.push(new Emotion(1, "jerry買晚餐不幫我帶好生氣", 1, "2024/09/07"))
-emotions.push(new Emotion(1, "忘記帶充電線哭哭", 2, "2024/09/07"))
-emotions.push(new Emotion(1, "思考晚餐吃甚麼好平靜", 3, "2024/09/07"))
+emotions.push(new Emotion(2, "忘記帶充電線哭哭", 2, "2024/09/07"))
+emotions.push(new Emotion(3, "思考晚餐吃甚麼好平靜", 3, "2024/09/07"))
+emotions.push(new Emotion(2, "思考晚餐不幫我帶", 2, "2024/09/07"))
 
 </script>
 

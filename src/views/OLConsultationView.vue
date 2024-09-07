@@ -3,22 +3,24 @@
         <div class=" mx-5 my-3">
             <span> 選擇時段 :</span>
         </div>
-        
+
         <div class="header flex flex-row gap-5 mx-5 my-3">
             <div>
-                <input class=" focus:border-color600 focus:outline-none" v-model="date" type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01"
-                    max="2018-12-31" />
+                <input class=" focus:border-color600 focus:outline-none" v-model="date" type="date" id="start"
+                    name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
                 <div class="grid grid-cols-2">
-                    <input class="my-2  focus:border-color600 focus:outline-none" v-model="time" type="time" id="appt" name="appt" min="09:00" max="18:00" step="30" required />           
-                    <PhMagnifyingGlass class="mx-3 my-1" @click="getAllInf()" :size="28" color="#5ab4c5" weight="duotone" />           
+                    <input class="my-2  focus:border-color600 focus:outline-none" v-model="time" type="time" id="appt"
+                        name="appt" min="09:00" max="18:00" step="30" required />
+                    <PhMagnifyingGlass class="mx-3 my-1" @click="dispoint()" :size="28" color="#5ab4c5"
+                        weight="duotone" />
                 </div>
             </div>
-           
+
         </div>
-        
+
         <div>
             <div style="height: 0.5px; background-color: #000; margin-top: 5px;"></div>
-            <br/>
+            <br />
             <div v-for="item of clinics" @click="clickClinics(item._id)" class="flex flex-row mx-4">
                 <PhCircle :size="12" color="#5ab4c5" weight="fill" class=" my-2" />
                 <div class="grid grid-rows-4 mx-3">
@@ -28,17 +30,6 @@
 
                 <PhGreaterThan :size="25" color="#000000" class="ml-auto my-2" />
             </div>
-
-
-
-
-
-
-
-
-
-
-
 
         </div>
     </div>
@@ -52,7 +43,7 @@
                     <div class=" text-xl text-center">預約資訊</div>
                     <div>預約日期:{{ date }}</div>
                     <div>預約時間:{{ time }}</div>
-                    <div>
+                    <div class="mx-5 my-1">
                         以下為設備檢查
                         <br />
                         O麥克風
@@ -63,12 +54,13 @@
                         <br />
                         O確保可以拍到臉部及上半身
                         <br />
-                        提醒:請於預約時間前十分鐘進入teams會議
                     </div>
-                    <div class="flex space-x-4 text-xl justify-center">
-                        <button class=" h-10 w-24 rounded-md" @click="confirm()"
+                    提醒 : 請於預約時間前十分鐘進入teams
+
+                    <div class="flex space-x-4 text-xl justify-center my-3">
+                        <button class=" h-8 w-24 rounded-md text-lg" @click="confirm()"
                             style="background: #5AB4C5; color: #ffffff !important;">提交</button>
-                        <button class=" h-10 w-24 rounded-md" @click="modalActive = false"
+                        <button class=" h-8 w-24 rounded-md text-lg" @click="modalActive = false"
                             style="background: #5AB4C5; color: #ffffff !important;">取消</button>
                     </div>
                 </div>
@@ -89,14 +81,23 @@ const modalActive = ref<boolean>(false);
 const date = ref<string>();
 const time = ref<string>();
 
+const dispoint = () => {
+    if (date.value && time.value) {
+        getAllInf();
+    }
+}
+
 const getAllInf = async () => {
-    const req = await requests.get('http://192.168.88.180:5000/getAllOLInf')
+    const req = await requests.get('http://192.168.88.182:5000/getAllOLInf')
     clinics.value = []
 
     for (const item of req.data.result.results) {
-        clinics.value.push(
-            new Clinic(item._id, item.address, item.name, item.phone)
-        )
+        if (!item.name.includes("治療所")) {
+            clinics.value.push(
+                new Clinic(item._id, item.address, item.name, item.phone)
+            )
+        }
+
     }
 }
 

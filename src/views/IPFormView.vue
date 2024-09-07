@@ -17,10 +17,13 @@
             value="2018-07-22" min="2018-01-01" max="2018-12-31" />
         <input v-model="time" class="mx-2 focus:border-color600 focus:outline-none" type="time" id="appt" name="appt" min="09:00"
             max="18:00" required />
-            {{ time }}
+            
     </div>
-    <button @click="modalActive = true" class=" h-10 w-24 rounded-md"
-        style="background: #5AB4C5;color: #ffffff !important;">預約</button>
+    <div class="mx-5 my-10" style="display: flex; justify-content: flex-end;">
+        <button @click="dispoint()" class=" h-10 w-24 rounded-md " 
+        style="background: #5AB4C5 ;color: #ffffff !important; ">預約</button>
+    </div>
+    
 
     <!-- The Modal -->
     <Transition>
@@ -30,12 +33,12 @@
                 <div class="bg-white p-4 opacity-100 w-80 z-20 rounded-lg"
                     style="background-color: white;opacity: 1 !important;">
                     <div class=" text-xl text-center">預約資訊</div>
-                    <div>預約日期:{{ date }}</div>
-                    <div>預約時間:{{ time }}</div>
-                    <div class="flex space-x-4 text-xl justify-center">
-                        <button class=" h-10 w-24 rounded-md" @click="confirm()"
+                    <div class="my-5">預約日 : {{ date }}</div>
+                    <div class="my-5">預約時間 : {{ time }}</div>
+                    <div class="flex space-x-4 text-xl justify-center my-5">
+                        <button class=" h-8 w-24 rounded-md text-lg" @click="confirm()"
                             style="background: #5AB4C5; color: #ffffff !important;">提交</button>
-                        <button class=" h-10 w-24 rounded-md" @click="modalActive = false"
+                        <button class=" h-8 w-24 rounded-md text-lg"  @click="modalActive = false"
                             style="background: #5AB4C5; color: #ffffff !important;">取消</button>
                     </div>
                 </div>
@@ -58,9 +61,16 @@ const time = ref<string>();
 const props = defineProps(['id'])
 const clinic = ref<Clinic>();
 
+const dispoint = () => {
+    if(date.value&&time.value){
+        modalActive.value = true
+    }
+}
+
 const getAllInf = async () => {
-    const req = await requests.get('http://192.168.88.180:5000/getAllIPInf')
+    const req = await requests.get('http://192.168.88.182:5000/getAllIPInf')
     const temp = req.data.result.results.filter((item) => item._id == props.id);
+    
     clinic.value = new Clinic(temp[0]._id, temp[0].address, temp[0].name, temp[0].phone)
 }
 
