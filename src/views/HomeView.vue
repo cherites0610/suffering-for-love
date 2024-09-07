@@ -12,7 +12,7 @@ import
                     <img src="../../image/347620.jpg"
                     class=" ">
                 </div>
-                <span class="text-base basis-2/3 ps-3 pe-3 py-5 leading-6" @click="goToUrl('/About')">文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述文字簡述</span>
+                <span class="text-base basis-2/3 ps-3 pe-3 py-1 leading-6" @click="goToUrl('/About')">每個人面臨挑戰時，都有自己不同的步調，有些人適應良好，有些人無法適應，步調跟不上期望的速度時，在生活中遇到的挫折感就會很大。這時候該怎麼穩定步調?該怎麼在困惑的生活中挪出一小片讓自己好好靜靜的空間?</span>
             </div>
         </div>
 
@@ -41,10 +41,9 @@ import
         <div>
             <div class="header flex flex-row justify-between">
                 <span class="font-semibold text-lg">更多消息</span>
-                <span class="text-lg">更多 ></span>
             </div>
 
-            <div class="card flex flex-col h-52 w-80 rounded-lg shadow-xl overflow-hidden p-5 my-1">
+            <div class="card flex flex-col h-52 w-80 rounded-lg shadow-xl overflow-auto p-5 my-1">
                 <div class="flex justify-between mb-5" v-for="item in news" @click="goToUrl(item.url)">
                     <span class=" text-base">{{ item.title }}</span>
                     <span class=" text-base">{{ item.date }}</span>
@@ -56,12 +55,23 @@ import
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+import requests from '../axios/index'
 import News from "../modal/news"
 
-const news: News[] = [];
-for (let i = 0; i < 10; i++) {
-    news.push(new News(i, "我也不知道標題是啥" + i, "http://localhost:5173/", "24/05/14"))
+const news = ref<News[]>([]);
+
+
+const getAllInf = async () => {
+    const res = await requests.get('http://172.20.10.2:5000/getAll');
+    for (let i = 0; i < res.data.length; i++) {
+        const tempNew = res.data[i]
+        news.value.push(new News(tempNew['_id'],tempNew['title'],tempNew['url'],tempNew['date']))
+    }
+    
 }
+getAllInf();
+
 
 const goToUrl = (url: string) => {
     window.location.href = url; // 導航到指定的URL
